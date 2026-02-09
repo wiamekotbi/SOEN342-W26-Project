@@ -6,7 +6,7 @@
 |------|------------|
 | Wiame Kotbi | 40299105 |
 | Maria Laghmari | 40297167 |
-| Marrwah Burke |  |
+| Marrwah Burke | 40299631  |
 
 ## Course Information
 - Course: SOEN 342 – Software Requirements and Deployment

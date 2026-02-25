@@ -7,3 +7,7 @@
 
 The system enables three important operations, which constitute the main functionality of it namely: creation of tasks, updating the existing tasks and viewing tasks. Such activities enable the user to control the key lifecycle of personal tasks. Other options like handling subtasks, projects, tags and history of activities enhance the flexibility and organization but are not necessary in the minimal functionality of the system. Additional use cases such as assigning a project or tags, changing task status and finding tasks are optional and are added to the major use cases to streamline the user workflow.
 
+#### PDF Link
+
+[use-case.pdf](https://github.com/user-attachments/files/25534193/use-case.pdf)
+

@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "verify-recovery",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"javac -d out (Get-ChildItem -Recurse -Filter *.java src/main/java | ForEach-Object { $_.FullName }); if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; java -cp out ca.concordia.soen342.poc.CsvImportExportDemo; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; java -cp out ca.concordia.soen342.poc.CsvImportExportSelfTest"
+			],
+			"isBackground": false
+		}
+	]
+}

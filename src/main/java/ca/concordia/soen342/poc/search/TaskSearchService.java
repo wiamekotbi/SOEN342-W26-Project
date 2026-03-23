@@ -68,12 +68,19 @@ public class TaskSearchService {
         }
 
         LocalDate due = t.getDueDate();
+
         if (c.dueFrom != null) {
             if (due == null || due.isBefore(c.dueFrom))
                 return false;
         }
+
         if (c.dueTo != null) {
             if (due == null || due.isAfter(c.dueTo))
+                return false;
+        }
+
+        if (c.dayOfWeek != null) {
+            if (due == null || due.getDayOfWeek() != c.dayOfWeek)
                 return false;
         }
 

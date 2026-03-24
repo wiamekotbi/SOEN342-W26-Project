@@ -3,6 +3,6 @@
 This folder contains the UML domain model artifacts for Iteration 2.
 
 ## Files
-- `uml-domain-model.png`
-- `uml-domain-model.pdf`
+- `uml-domain-model-updated.png`
+- `uml-domain-model-updated.pdf`
 - `README.md`

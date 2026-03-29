@@ -94,17 +94,17 @@ public class IcsCalendarGateway implements CalendarGateway {
         StringBuilder sb = new StringBuilder();
 
         sb.append("Description: ").append(safe(task.getDescription()));
-        sb.append("\\nStatus: ").append(task.getStatus() == null ? "" : task.getStatus().name());
-        sb.append("\\nPriority: ").append(task.getPriority() == null ? "" : task.getPriority().name());
+        sb.append("\nStatus: ").append(task.getStatus() == null ? "" : task.getStatus().name());
+        sb.append("\nPriority: ").append(task.getPriority() == null ? "" : task.getPriority().name());
 
         Project project = task.getProject();
-        sb.append("\\nProject: ").append(project == null ? "" : safe(project.getName()));
+        sb.append("\nProject: ").append(project == null ? "" : safe(project.getName()));
 
         List<Subtask> subtasks = task.getSubtasks();
         if (subtasks != null && !subtasks.isEmpty()) {
-            sb.append("\\nSubtasks:");
+            sb.append("\nSubtasks:");
             for (Subtask subtask : subtasks) {
-                sb.append("\\n- ")
+                sb.append("\n- ")
                         .append(safe(subtask.getTitle()))
                         .append(" [")
                         .append(safe(subtask.getCompletionStatus()))

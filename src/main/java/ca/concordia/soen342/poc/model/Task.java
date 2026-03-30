@@ -17,6 +17,7 @@ public class Task {
     private final List<Subtask> subtasks = new ArrayList<>();
     private final List<Tag> tags = new ArrayList<>();
     private final List<ActivityEntry> activityEntries = new ArrayList<>();
+    private final List<Collaborator> collaborators = new ArrayList<>();
 
     public Task() {
     }
@@ -115,6 +116,10 @@ public class Task {
         return activityEntries;
     }
 
+    public List<Collaborator> getCollaborators() {
+    return collaborators;
+}
+
     public void addTag(Tag tag) {
         tags.add(tag);
     }
@@ -125,5 +130,19 @@ public class Task {
 
     public void addActivityEntry(ActivityEntry entry) {
         activityEntries.add(entry);
+    }
+
+    public void addCollaborator(Collaborator collaborator) {
+    if (collaborator != null && !collaborators.contains(collaborator)) {
+        collaborators.add(collaborator);
+    }
+    }
+
+    public void removeCollaborator(Collaborator collaborator) {
+    collaborators.remove(collaborator);
+    }
+
+    public boolean isOpen() {
+    return status == Status.OPEN;
     }
 }

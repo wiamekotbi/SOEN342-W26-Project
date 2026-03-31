@@ -7,16 +7,17 @@ import ca.concordia.soen342.poc.model.Status;
 import ca.concordia.soen342.poc.model.Task;
 import ca.concordia.soen342.poc.overload.CollaboratorOverloadInfo;
 import ca.concordia.soen342.poc.overload.CollaboratorOverloadService;
-import ca.concordia.soen342.poc.repository.InMemoryTaskRepository;
+import ca.concordia.soen342.poc.repository.SqliteTaskRepository;
 import ca.concordia.soen342.poc.repository.TaskRepository;
 
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class OverloadedCollaboratorsSelfTest {
-    public static void main(String[] args) {
-        TaskRepository repo = new InMemoryTaskRepository();
+    public static void main(String[] args) throws Exception {
+        TaskRepository repo = new SqliteTaskRepository(Files.createTempFile("overload-selftest-", ".db"));
 
         Collaborator junior = new Collaborator(1, "Maya", CollaboratorCategory.JUNIOR);
         Collaborator senior = new Collaborator(2, "Omar", CollaboratorCategory.SENIOR);

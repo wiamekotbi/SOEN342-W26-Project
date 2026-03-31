@@ -8,7 +8,8 @@ import ca.concordia.soen342.poc.model.Project;
 import ca.concordia.soen342.poc.model.Status;
 import ca.concordia.soen342.poc.model.Subtask;
 import ca.concordia.soen342.poc.model.Task;
-import ca.concordia.soen342.poc.repository.InMemoryTaskRepository;
+import ca.concordia.soen342.poc.repository.RepositoryPaths;
+import ca.concordia.soen342.poc.repository.SqliteTaskRepository;
 import ca.concordia.soen342.poc.repository.TaskRepository;
 import ca.concordia.soen342.poc.search.SearchCriteria;
 
@@ -18,7 +19,7 @@ import java.time.LocalDateTime;
 public class IcsExportDemo {
 
     public static void main(String[] args) throws Exception {
-        TaskRepository repo = new InMemoryTaskRepository();
+        TaskRepository repo = new SqliteTaskRepository(RepositoryPaths.defaultDatabasePath());
 
         Project school = new Project(1, "School", "School tasks");
         Project work = new Project(2, "Work", "Work tasks");
@@ -69,5 +70,6 @@ public class IcsExportDemo {
         criteria.status = Status.OPEN;
 
         exportService.exportFilteredTasks(criteria, "samples/filtered.ics");
+        System.out.println("Persisted tasks to " + RepositoryPaths.defaultDatabasePath().toAbsolutePath());
     }
 }

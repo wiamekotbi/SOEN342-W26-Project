@@ -1,4 +1,4 @@
-# SOEN 342 – Winter 2026 Project
+# SOEN 342 - Winter 2026 Project
 
 ## Team Information
 
@@ -6,8 +6,11 @@
 |------|------------|
 | Wiame Kotbi | 40299105 |
 | Maria Laghmari | 40297167 |
-| Marrwah Burke | 40299631  |
+| Marrwah Burke | 40299631 |
 
 ## Course Information
-- Course: SOEN 342 – Software Requirements and Deployment
+- Course: SOEN 342 - Software Requirements and Deployment
 - Term: Winter 2026
+
+## Testing
+- See [TESTING.md](TESTING.md) for compilation and self-test instructions.

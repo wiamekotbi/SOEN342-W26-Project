@@ -3,7 +3,7 @@ package ca.concordia.soen342.poc;
 import ca.concordia.soen342.poc.csv.TaskCsvExporter;
 import ca.concordia.soen342.poc.csv.TaskCsvImporter;
 import ca.concordia.soen342.poc.model.Task;
-import ca.concordia.soen342.poc.repository.InMemoryTaskRepository;
+import ca.concordia.soen342.poc.repository.SqliteTaskRepository;
 import ca.concordia.soen342.poc.repository.TaskRepository;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,7 +24,8 @@ public class CsvImportExportSelfTest {
         );
         Files.writeString(inputPath, inputCsv + System.lineSeparator());
 
-        TaskRepository repository = new InMemoryTaskRepository();
+        Path databasePath = Files.createTempFile("csv-poc-test-", ".db");
+        TaskRepository repository = new SqliteTaskRepository(databasePath);
         TaskCsvImporter importer = new TaskCsvImporter();
         TaskCsvExporter exporter = new TaskCsvExporter();
 
@@ -44,7 +45,7 @@ public class CsvImportExportSelfTest {
 
         exporter.exportTo(outputPath, repository.findAll());
 
-        TaskRepository secondRepository = new InMemoryTaskRepository();
+        TaskRepository secondRepository = new SqliteTaskRepository(Files.createTempFile("csv-poc-roundtrip-", ".db"));
         List<Task> roundTripTasks = importer.importFrom(outputPath, secondRepository);
 
         assertEquals(2, roundTripTasks.size(), "Round-trip should keep 2 tasks");
@@ -60,6 +61,7 @@ public class CsvImportExportSelfTest {
         System.out.println("CSV self-test passed.");
         System.out.println("Input file: " + inputPath);
         System.out.println("Output file: " + outputPath);
+        System.out.println("Database file: " + databasePath);
     }
 
     private static void assertEquals(Object expected, Object actual, String message) {

@@ -4,18 +4,19 @@ import ca.concordia.soen342.poc.model.PriorityLevel;
 import ca.concordia.soen342.poc.model.Project;
 import ca.concordia.soen342.poc.model.Status;
 import ca.concordia.soen342.poc.model.Task;
-import ca.concordia.soen342.poc.repository.InMemoryTaskRepository;
+import ca.concordia.soen342.poc.repository.SqliteTaskRepository;
 import ca.concordia.soen342.poc.search.SearchCriteria;
 import ca.concordia.soen342.poc.search.TaskSearchService;
 
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class TaskSearchViewSelfTest {
 
-    public static void main(String[] args) {
-        InMemoryTaskRepository repo = new InMemoryTaskRepository();
+    public static void main(String[] args) throws Exception {
+        SqliteTaskRepository repo = new SqliteTaskRepository(Files.createTempFile("search-selftest-", ".db"));
 
         Project school = new Project();
         school.setName("School");

@@ -8,7 +8,7 @@ import ca.concordia.soen342.poc.model.Project;
 import ca.concordia.soen342.poc.model.Status;
 import ca.concordia.soen342.poc.model.Subtask;
 import ca.concordia.soen342.poc.model.Task;
-import ca.concordia.soen342.poc.repository.InMemoryTaskRepository;
+import ca.concordia.soen342.poc.repository.SqliteTaskRepository;
 import ca.concordia.soen342.poc.repository.TaskRepository;
 import ca.concordia.soen342.poc.search.SearchCriteria;
 
@@ -20,7 +20,8 @@ import java.time.LocalDateTime;
 public class IcsExportSelfTest {
 
     public static void main(String[] args) throws Exception {
-        TaskRepository repo = new InMemoryTaskRepository();
+        Path databasePath = Files.createTempFile("ics-selftest-", ".db");
+        TaskRepository repo = new SqliteTaskRepository(databasePath);
 
         Project project = new Project(10, "Capstone", "Capstone project");
 
@@ -78,6 +79,7 @@ public class IcsExportSelfTest {
                 "filtered export should ignore task without due date");
 
         System.out.println("All iCal self-tests passed.");
+        System.out.println("Database file: " + databasePath);
     }
 
     private static void assertTrue(boolean condition, String message) {

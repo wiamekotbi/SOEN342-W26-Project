@@ -7,7 +7,8 @@ import ca.concordia.soen342.poc.model.Status;
 import ca.concordia.soen342.poc.model.Task;
 import ca.concordia.soen342.poc.overload.CollaboratorOverloadInfo;
 import ca.concordia.soen342.poc.overload.CollaboratorOverloadService;
-import ca.concordia.soen342.poc.repository.InMemoryTaskRepository;
+import ca.concordia.soen342.poc.repository.RepositoryPaths;
+import ca.concordia.soen342.poc.repository.SqliteTaskRepository;
 import ca.concordia.soen342.poc.repository.TaskRepository;
 
 import java.time.LocalDate;
@@ -17,7 +18,7 @@ import java.util.Scanner;
 
 public class OverloadedCollaboratorsDemo {
     public static void main(String[] args) {
-        TaskRepository repo = new InMemoryTaskRepository();
+        TaskRepository repo = new SqliteTaskRepository(RepositoryPaths.defaultDatabasePath());
         seedSampleData(repo);
 
         Scanner scanner = new Scanner(System.in);
@@ -33,6 +34,8 @@ public class OverloadedCollaboratorsDemo {
         } else {
             System.out.println("Invalid option.");
         }
+
+        System.out.println("Persisted tasks to " + RepositoryPaths.defaultDatabasePath().toAbsolutePath());
     }
 
     private static void listOverloadedCollaborators(TaskRepository repo) {
